@@ -1,0 +1,4 @@
+1 aris karagiannakos 15000 9000
+2 elli danezi 16000 8001
+3 milena karagiannakou 20000 5000
+4 thanasis vasileiou 200000 10000
