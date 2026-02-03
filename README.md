@@ -1,6 +1,6 @@
 # Data Structures (Java) — Assignments 1–3
 
-Συλλογή εργασιών για το μάθημα **Δομές Δεδομένων** σε **Java**, με υλοποιήσεις βασικών δομών (Deque, Priority Queue, BST) και εφαρμογές πάνω σε πραγματικά “mini-problems” (μετατροπή εκφράσεων, top-k πόλεις, αναζήτηση καταθετών κ.λπ.). :contentReference[oaicite:0]{index=0} :contentReference[oaicite:1]{index=1} :contentReference[oaicite:2]{index=2}
+Συλλογή εργασιών για το μάθημα **Δομές Δεδομένων** σε **Java**, με υλοποιήσεις βασικών δομών (Deque, Priority Queue, BST) και εφαρμογές πάνω σε πραγματικά “mini-problems” (μετατροπή εκφράσεων, top-k πόλεις, αναζήτηση καταθετών). 
 
 **Συντελεστές:**  
 - Αριστείδης Καραγιαννάκος (P3220066)  
