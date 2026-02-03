@@ -6,6 +6,17 @@
 - Αριστείδης Καραγιαννάκος (P3220066)  
 - Έλλη-Μαρία Δανέζη (P3220037) :contentReference[oaicite:3]{index=3}
 
+
+---
+
+## Περιγραφή
+- Implemented a Double-Ended Queue (Deque) using a doubly linked list with O(1) operations; applied it to prefix-to-infix conversion and DNA Watson–Crick palindrome checking. 
+- Developed solutions for top-k queries on data streams using sorting (Quicksort/Heapsort) and Priority Queues (Min-Heaps), achieving improved performance when k ≪ N. 
+- Implemented a Dynamic Median algorithm on data streams using two priority queues (min-heap / max-heap). 
+- Built a Randomized Binary Search Tree (Symbol Table) supporting insert, search, remove, traversals, and statistical queries (mean values, top-k queries). 
+
+---
+
 ---
 
 ## Περιεχόμενα
