@@ -1,123 +1,119 @@
 # Data Structures (Java) — Assignments 1–3
 
-Συλλογή εργασιών για το μάθημα **Δομές Δεδομένων** σε **Java**, με υλοποιήσεις βασικών δομών (Deque, Priority Queue, BST) και εφαρμογές πάνω σε πραγματικά “mini-problems” (μετατροπή εκφράσεων, top-k πόλεις, αναζήτηση καταθετών). 
+Συλλογή εργασιών για το μάθημα **Δομές Δεδομένων** σε **Java**, με υλοποιήσεις βασικών δομών (**Deque, Priority Queue, BST**) και εφαρμογές σε πραγματικά “mini-problems” (μετατροπή εκφράσεων, top-k πόλεις, αναζήτηση καταθετών).
 
-**Συντελεστές:**  
-- Αριστείδης Καραγιαννάκος (P3220066)  
-- Έλλη-Μαρία Δανέζη (P3220037) :contentReference[oaicite:3]{index=3}
-
-
----
-
-## Περιγραφή
-- Implemented a Double-Ended Queue (Deque) using a doubly linked list with O(1) operations; applied it to prefix-to-infix conversion and DNA Watson–Crick palindrome checking. 
-- Developed solutions for top-k queries on data streams using sorting (Quicksort/Heapsort) and Priority Queues (Min-Heaps), achieving improved performance when k ≪ N. 
-- Implemented a Dynamic Median algorithm on data streams using two priority queues (min-heap / max-heap). 
-- Built a Randomized Binary Search Tree (Symbol Table) supporting insert, search, remove, traversals, and statistical queries (mean values, top-k queries). 
+**Contributors**
+- Αριστείδης Καραγιαννάκος (P3220066)
+- Έλλη-Μαρία Δανέζη (P3220037)
 
 ---
 
----
-
-## Περιεχόμενα
-- [Εργασία 1 — Deque + Εφαρμογές](#εργασία-1--deque--εφαρμογές)
-- [Εργασία 2 — Quicksort + Priority Queue (Top-k/Median)](#εργασία-2--quicksort--priority-queue-top-kmedian)
-- [Εργασία 3 — BST LargeDepositor + Top-k](#εργασία-3--bst-largedepositor--top-k)
-- [Τεχνολογίες](#τεχνολογίες)
-- [Εκτέλεση](#εκτέλεση)
-- [Σημειώσεις εισόδου](#σημειώσεις-εισόδου)
+## ✨ Overview
+- Implemented a **Double-Ended Queue (Deque)** using a **doubly linked list** with **O(1)** operations; applied it to **prefix→infix conversion** and **DNA Watson–Crick palindrome checking**.
+- Developed solutions for **top-k queries** on streams using **sorting (Quicksort/Heapsort)** and **Priority Queues (Min-Heaps)**, optimized when **k ≪ N**.
+- Implemented a **Dynamic Median** algorithm on streams using **two priority queues** (min-heap / max-heap).
+- Built a **Binary Search Tree (Symbol Table)** for `LargeDepositor` supporting **insert/search/remove/traversals** and **statistical queries** (mean values, top-k).
 
 ---
 
-## Εργασία 1 — Deque + Εφαρμογές
+## 📚 Contents
+- [Assignment 1 — Deque + Applications](#assignment-1--deque--applications)
+- [Assignment 2 — Quicksort + Priority Queue (Top-k/Median)](#assignment-2--quicksort--priority-queue-top-kmedian)
+- [Assignment 3 — BST LargeDepositor + Top-k](#assignment-3--bst-largedepositor--top-k)
+- [Tech Stack](#tech-stack)
+- [How to Run](#how-to-run)
+- [Input Notes](#input-notes)
 
-### Θέμα A: `StringDoubleEndedQueue` (Deque)
-Υλοποίηση **Double-Ended Queue** (εισαγωγή/αφαίρεση από head & tail) με:
-- **Interface** `StringDoubleEndedQueue`
-- Υλοποίηση `StringDoubleEndedQueueImpl`
-- Χρήση **generics** ώστε να δέχεται οποιοδήποτε `T` αντικείμενο. :contentReference[oaicite:4]{index=4}
+---
 
-Βασικές μέθοδοι (ενδεικτικά):
+## Assignment 1 — Deque + Applications
+
+### A) `StringDoubleEndedQueue` (Deque)
+Υλοποίηση **Deque** με εισαγωγή/αφαίρεση από **head & tail**:
+- Interface: `StringDoubleEndedQueue`
+- Implementation: `StringDoubleEndedQueueImpl`
+- Χρήση **Generics** ώστε να δέχεται αντικείμενα τύπου `T`
+
+**Core methods**
 - `isEmpty()`
 - `addFirst()`, `removeFirst()`
 - `addLast()`, `removeLast()`
 - `getFirst()`, `getLast()`
 - `printQueue(Stream)`
-- `size()` με counter → **O(1)** :contentReference[oaicite:5]{index=5}
+- `size()` με counter → **O(1)**
 
-> Στόχος: λειτουργίες Deque σε **σταθερό χρόνο O(1)** μέσω δεικτών head/tail/next/prev. :contentReference[oaicite:6]{index=6}
+**Goal:** Deque operations σε **σταθερό χρόνο O(1)** μέσω δεικτών `head/tail/next/prev`.
 
-### Θέμα B: Prefix → Infix Converter
-Χρήση της Deque της Εργασίας 1 για μετατροπή από **προθεματική (prefix)** σε **ενθεματική (infix)** μορφή:
-- Έλεγχος αν token είναι τελεστής ή αριθμός
-- Σε τελεστή: γίνεται `removeLast` δύο στοιχείων και σύνθεση `(a op b)` για σωστή προτεραιότητα πράξεων
-- Τελικό αποτέλεσμα: το τελευταίο στοιχείο της λίστας. :contentReference[oaicite:7]{index=7}
+### B) Prefix → Infix Converter
+Με χρήση της Deque:
+- Αν token είναι τελεστής: `removeLast()` δύο στοιχείων και σύνθεση `(a op b)`
+- Τελικό αποτέλεσμα: το τελευταίο στοιχείο της δομής
 
-### Θέμα Γ: DNA Complementary Palindrome
-Έλεγχος αν μια ακολουθία DNA είναι **συμμετρικά συμπληρωματική** (Watson–Crick complement):
-- Συμπληρωματικά ζεύγη: **A–T**, **C–G** (και αντίστροφα)
+### C) DNA Complementary Palindrome (Watson–Crick)
+Έλεγχος αν DNA είναι **συμμετρικά συμπληρωματικό**:
+- Ζεύγη: **A–T**, **C–G**
 - Σύγκριση πρώτου-τελευταίου, δεύτερου-προτελευταίου κ.ο.κ.
-- Πολυπλοκότητα: **O(N)** λόγω ενός loop πάνω στο μήκος του DNA. :contentReference[oaicite:8]{index=8}
+- Πολυπλοκότητα: **O(N)**
 
 ---
 
-## Εργασία 2 — Quicksort + Priority Queue (Top-k/Median)
+## Assignment 2 — Quicksort + Priority Queue (Top-k/Median)
 
-### Θέμα A: Quicksort + Ανάγνωση πόλεων
-- Υλοποίηση **Quicksort** με `partition()` γύρω από pivot (`larg`) και αναδρομικό διαχωρισμό υποπινάκων. :contentReference[oaicite:9]{index=9}
-- `ReadCity`/`read(...)`: διάβασμα `.txt` γραμμή-γραμμή και δημιουργία αντικειμένων `City` (parsing με split και έλεγχο αριθμητικών μέσω `try/catch`). :contentReference[oaicite:10]{index=10}
-- Στη `main`: ο χρήστης δίνει **k** (πόσες πόλεις να εμφανιστούν). Γίνεται ταξινόμηση και εκτύπωση, με έλεγχο `k <= length`. :contentReference[oaicite:11]{index=11}
+### A) Quicksort + Reading Cities
+- Υλοποίηση **Quicksort** με `partition()` γύρω από pivot και αναδρομή
+- `ReadCity`/`read(...)`: διάβασμα `.txt` και δημιουργία `City` objects (parsing + validation)
+- Στη `main`: input **k** και εκτύπωση top-k (με check `k <= N`)
 
-### Θέμα B: `remove` σε Priority Queue με position array
-Για γρήγορη διαγραφή στοιχείου από PQ:
-- Κρατάμε **πίνακα θέσεων** (mapping `id -> position`)
-- Στο `remove(id)`: βρίσκουμε άμεσα τη θέση, κάνουμε swap με το τελευταίο και “ξαναφτιάχνουμε” την ουρά με `sink(position)`. :contentReference[oaicite:12]{index=12}
+### B) `remove` in Priority Queue with position array
+Για O(1) εύρεση θέσης + O(log N) αποκατάσταση heap:
+- Mapping `id -> position`
+- `remove(id)`: swap με last element, μετά `sink(position)` (και/ή `swim` ανάλογα)
 
-### Θέμα Γ: Top-k πόλεις με PQ (log k)
-- Διαβάζουμε πόλεις και τις προσθέτουμε σε PQ, με `swim` ώστε να παραμένει σε φθίνουσα σειρά.
-- Κρατάμε μόνο τα **k καλύτερα στοιχεία**: αν το νέο στοιχείο “κερδίζει”, αφαιρούμε το μέγιστο και βάζουμε το νέο.
-- Εκτύπωση των k στοιχείων από μικρότερο → μεγαλύτερο με `getmin()`. :contentReference[oaicite:13]{index=13}
-- Ανάλυση πολυπλοκότητας που δίνεται: τελικά εκφράζεται ως **O(log k)** ως προς τις βασικές πράξεις PQ (για μικρά k είναι ιδιαίτερα αποδοτικό). :contentReference[oaicite:14]{index=14}
+### C) Top-k Cities using PQ
+- Streaming insert σε PQ
+- Κρατάμε μόνο τα **k καλύτερα**
+- Όταν νέο στοιχείο “κερδίζει”: απομάκρυνση του χειρότερου και εισαγωγή του νέου
+- Πράξεις PQ: **O(log k)**
 
-### Θέμα Δ: Median με δύο ουρές
-Χρήση δύο PQ:
-- μία που κρατά μέχρι **k**
-- μία που κρατά **όλα**
-και στο τέλος υπολογισμός median ανάλογα αν το πλήθος είναι ζυγό/μονό, μέσω επαναλαμβανόμενων `getmin()` μέχρι τη μέση. :contentReference[oaicite:15]{index=15}
-
----
-
-## Εργασία 3 — BST LargeDepositor + Top-k
-
-Υλοποίηση δέντρου αναζήτησης (**BST**) με κλειδί το **ΑΦΜ**, για αντικείμενα `LargeDepositor`, και βασικές λειτουργίες:
-
-- `insert(LargeDepositor item)`: εισαγωγή στη ρίζα ή σε αριστερό/δεξί υποδέντρο ανάλογα με το ΑΦΜ. :contentReference[oaicite:16]{index=16}  
-- `load(String filename)`: διάβασμα αρχείου και εισαγωγή καταθετών με `insert`. :contentReference[oaicite:17]{index=17}  
-- `updateSavings(int AFM, double savings)`: ενημέρωση αποταμιεύσεων αν βρεθεί ο κόμβος. :contentReference[oaicite:18]{index=18}  
-- `searchByAFM(int AFM)`: αναζήτηση με βάση το κλειδί ΑΦΜ. :contentReference[oaicite:19]{index=19}  
-- `searchByLastName(String last_name)`: συλλογή αποτελεσμάτων σε λίστα τύπου `StringDoubleEndedQueueImpl` (από Εργασία 1) μέσω αναδρομικής διάσχισης. :contentReference[oaicite:20]{index=20}  
-- `remove(int AFM)`: αφαίρεση κόμβου με περιπτώσεις (0/1/2 παιδιά) και εύρεση κατάλληλου αντικαταστάτη. :contentReference[oaicite:21]{index=21}  
-- `printTopLargeDepositors(int k)`: χρήση της **PriorityQueue** από Εργασία 2 για top-k καταθέτες, μέσω compare. :contentReference[oaicite:22]{index=22}  
-- `printByAFM()`: αναδρομική εκτύπωση όλων των στοιχείων. :contentReference[oaicite:23]{index=23}  
-
-> Οι πολυπλοκότητες αναφέρονται στο report ανά μέθοδο (π.χ. `searchByLastName: O(N)`, `printTopLargeDepositors: O(N log N)` κ.λπ.). :contentReference[oaicite:24]{index=24}
+### D) Median with two priority queues
+- Δύο PQ (min-heap / max-heap)
+- Διατήρηση ισορροπίας ώστε να υπολογίζεται median γρήγορα
+- Median ανάλογα με άρτιο/περιττό πλήθος
 
 ---
 
-## Τεχνολογίες
-- **Java**
-- Βασικές έννοιες: interfaces, generics, recursion, time complexity (Big-O) :contentReference[oaicite:25]{index=25} :contentReference[oaicite:26]{index=26} :contentReference[oaicite:27]{index=27}
+## Assignment 3 — BST LargeDepositor + Top-k
+
+Υλοποίηση **BST** με κλειδί το **ΑΦΜ** για αντικείμενα `LargeDepositor`:
+
+- `insert(LargeDepositor item)`
+- `load(String filename)`
+- `updateSavings(int AFM, double savings)`
+- `searchByAFM(int AFM)`
+- `searchByLastName(String lastName)` (συλλογή results σε Deque από Assignment 1)
+- `remove(int AFM)` (0/1/2 παιδιά με κατάλληλο successor)
+- `printTopLargeDepositors(int k)` (χρήση PQ από Assignment 2)
+- `printByAFM()` (in-order traversal)
+
+> Ενδεικτικές πολυπλοκότητες:  
+> `searchByLastName: O(N)`, `printTopLargeDepositors: O(N log N)` (ανάλογα με υλοποίηση/ισορροπία δέντρου).
 
 ---
 
-## Εκτέλεση
+## 🧰 Tech Stack
+- **Java (JDK 8+)**
+- Concepts: **interfaces, generics, recursion, heaps, BST, Big-O**
 
-> Επειδή η ακριβής δομή φακέλων/ονόματα main classes μπορεί να διαφέρουν στο repo, παρακάτω είναι ο “τυπικός” τρόπος εκτέλεσης σε plain Java.
+---
 
-### Προαπαιτούμενα
-- JDK 8+ (προτείνεται 11 ή 17)
-- (Προαιρετικά) IDE: IntelliJ / Eclipse
+## ▶️ How to Run
 
-### Compile (παράδειγμα)
+> Η δομή φακέλων/ονόματα main classes μπορεί να διαφέρουν. Τα παρακάτω είναι “τυπικό” setup για plain Java.
+
+### Prerequisites
+- **JDK 8+** (recommended 11 ή 17)
+- (Optional) IDE: IntelliJ / Eclipse
+
+### Compile (example)
 ```bash
 javac -d out src/**/*.java
